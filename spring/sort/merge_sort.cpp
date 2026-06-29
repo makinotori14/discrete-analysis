@@ -52,3 +52,5 @@ int main() {
     }
     std::cout << std::endl;
 }
+
+// Time O(NlogN), Memory O(N)
