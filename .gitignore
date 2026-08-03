@@ -12,5 +12,16 @@
 # macOS debug symbols
 **/*.dSYM/
 
+/test/
+
 # compiled binaries for tasks
 spring/sort/merge_sort
+spring/sort/insertion_sort
+spring/sort/bubble_sort
+spring/sort/selection_sort
+spring/sort/quick_sort
+spring/sort/radix_sort_lsd
+spring/sort/bucket_sort
+spring/sort/bin_radix_lsd
+spring/sort/counting_sort
+
