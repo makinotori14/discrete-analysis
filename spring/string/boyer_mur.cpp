@@ -76,13 +76,12 @@ private:
     std::vector<int> GoodSufExitRule() {
         std::vector<int> ans(n + 1);
         int last = n;
-        for (int i = n - 1; i > 0; --i) {
+        for (int i = n - 1; i >= 0; --i) {
             ans[n - i] = last;
-            if (i + zP[i] == n) {
+            if (i > 0 && i + zP[i] == n) {
                 last = i;
             }
         }
-        ans[n] = last;
         return ans;
     }
 
