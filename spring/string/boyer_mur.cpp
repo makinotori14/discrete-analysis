@@ -14,6 +14,7 @@ private:
 
     std::vector<int> zP;
     std::vector<int> zPr;
+    std::vector<int> N;
 
     std::vector<std::vector<int>> bc;
     std::vector<int> gs;
@@ -24,7 +25,6 @@ private:
         if (s.empty()) {
             return {};
         }
-        z[0] = -1;
         int l = -1;
         int r = -1;
         for (int i = 1; i < n; ++i) {
@@ -63,10 +63,11 @@ private:
     }
 
     std::vector<int> GoodSufRule() {
-        std::vector<int> ans(n, -1);
-        for (int i = 1; i < n; ++i) {
-            if (ans[zPr[i]] == -1) {
-                ans[zPr[i]] = i;
+        std::vector<int> ans(n);
+        for (int j = 0; j < n - 1; ++j) {
+            int k = N[j];
+            if (k > 0) {
+                ans[k] = n - j - 1;
             }
         }
         return ans;
@@ -112,6 +113,8 @@ public:
         std::reverse(Pr.begin(), Pr.end());
         zP = ZFunc(P);
         zPr = ZFunc(Pr);
+        N = zPr;
+        std::reverse(N.begin(), N.end());
 
         bc = BadCharRule();
         gs = GoodSufRule();
@@ -140,7 +143,7 @@ public:
             int shift = 1;
             shift = std::max(shift, BCShift(T[j], i));
             if (n - i - 1 > 0) {
-                if (gs[n - i - 1] != -1) {
+                if (gs[n - i - 1]) {
                     shift = std::max(shift, gs[n - i - 1]);
                 } else {
                     shift = std::max(shift, gse[n - i - 1]);
